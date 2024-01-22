@@ -24,7 +24,7 @@ juce_add_plugin(${PROJECT_NAME}
     NEEDS_MIDI_OUTPUT FALSE
     PLUGIN_MANUFACTURER_CODE AUGN
     PLUGIN_CODE PS1R
-    FORMATS VST3 # Add AAX and AU later
+    FORMATS VST3 Standalone
     PRODUCT_NAME "PS1 Reverb"
 )
 

@@ -59,7 +59,7 @@ add_subdirectory(test)
 
 
 # IR files configuration
-set(IR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source/IR")
+set(IR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/plugin/source/IR")
 set(IR_FILES
     "${IR_DIR}/IRChurch.aiff"
     "${IR_DIR}/IRDome.aiff"

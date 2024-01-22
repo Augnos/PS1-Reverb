@@ -6,7 +6,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Sets a few variables, like PROJECT_NAME
-project(WolfSoundAudioPluginTemplate)
+project(PS1-Reverb)
 
 # Always use the newest C++ standard on green-field projects if possible.
 set(CMAKE_CXX_STANDARD 23)
@@ -22,8 +22,8 @@ include(cmake/cpm.cmake)
 # This commands downloads AND configures JUCE. It sets up some variables, like JUCE_SOURCE_DIR.
 CPMAddPackage(
     NAME JUCE
-    GIT_TAG 7.0.5
-    VERSION 7.0.5
+    GIT_TAG 7.0.9
+    VERSION 7.0.9
     GITHUB_REPOSITORY juce-framework/JUCE
     SOURCE_DIR ${LIB_DIR}/juce
 )
@@ -32,8 +32,8 @@ CPMAddPackage(
 CPMAddPackage(
     NAME GOOGLETEST
     GITHUB_REPOSITORY google/googletest
-    GIT_TAG v1.13.0
-    VERSION 1.13.0
+    GIT_TAG v1.14.0
+    VERSION 1.14.0
     SOURCE_DIR ${LIB_DIR}/googletest
     OPTIONS
         "INSTALL_GTEST OFF"
@@ -56,3 +56,19 @@ add_subdirectory(plugin)
 
 # Adds all the targets configured in the "test" folder.
 add_subdirectory(test)
+
+
+# IR files configuration
+set(IR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source/IR")
+set(IR_FILES
+    "${IR_DIR}/IRChurch.aiff"
+    "${IR_DIR}/IRDome.aiff"
+    "${IR_DIR}/IRHall.aiff"
+    "${IR_DIR}/IRStudio.aiff"
+)
+
+# Copy IR files to build directory
+foreach(IR_FILE ${IR_FILES})
+    get_filename_component(IR_FILE_NAME ${IR_FILE} NAME)
+    configure_file(${IR_FILE} ${CMAKE_BINARY_DIR}/IR/${IR_FILE_NAME} COPYONLY)
+endforeach()

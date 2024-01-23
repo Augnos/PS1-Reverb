@@ -143,7 +143,8 @@ bool AudioPluginAudioProcessor::hasEditor() const {
 }
 
 juce::AudioProcessorEditor* AudioPluginAudioProcessor::createEditor() {
-  return new AudioPluginAudioProcessorEditor(*this);
+  // return new AudioPluginAudioProcessorEditor(*this);
+  return new juce::GenericAudioProcessorEditor(*this);
 }
 
 void AudioPluginAudioProcessor::getStateInformation(
@@ -161,6 +162,24 @@ void AudioPluginAudioProcessor::setStateInformation(const void* data,
   // call.
   juce::ignoreUnused(data, sizeInBytes);
 }
+
+juce::AudioProcessorValueTreeState::ParameterLayout AudioPluginAudioProcessor::createParameterLayout() {
+  juce::AudioProcessorValueTreeState::ParameterLayout layout;
+
+  layout.add(std::make_unique<juce::AudioParameterChoice>("Room Size",
+                                                          "Room Size",
+                                                          juce::StringArray{"Studio", "Church", "Dome", "Hall"},
+                                                          0));
+
+  layout.add(std::make_unique<juce::AudioParameterFloat>("Wet/Dry",
+                                                          "Wet/Dry",
+                                                          juce::NormalisableRange<float>(0.f, 100.f, 0.1f, 1.f),
+                                                          100.f));
+
+  return layout;
+}
+
+
 }  // namespace audio_plugin
 
 // This creates new instances of the plugin.

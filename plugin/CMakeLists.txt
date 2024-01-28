@@ -10,10 +10,10 @@ set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/PS1-Reverb")
 # IR files configuration
 set(IR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/source/IR")
 set(IR_FILES
-    "${IR_DIR}/IRChurch.aiff"
-    "${IR_DIR}/IRDome.aiff"
-    "${IR_DIR}/IRHall.aiff"
-    "${IR_DIR}/IRStudio.aiff"
+    "${IR_DIR}/IRChurch.wav"
+    "${IR_DIR}/IRDome.wav"
+    "${IR_DIR}/IRHall.wav"
+    "${IR_DIR}/IRStudio.wav"
 )
 
 # Adds a plugin target (that's basically what the Projucer does).
